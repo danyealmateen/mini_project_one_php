@@ -14,4 +14,6 @@ require APP_PATH . 'App.php';
 
 $transactionData = getTransactionData();
 
-echo $transactionData;
+foreach ($transactionData as $row) {
+    echo implode(', ', $row);
+}
