@@ -15,12 +15,10 @@ function get_transaction_data()
 
     //FALSE kommer när slutet av filen är nådd eller om det blir fel
     while (($row = fgetcsv($file)) !== FALSE) {
-        //Sparar varje rad i CSV i data arrayen
         $data[] = $row;
     }
     //stänger ner filen
     fclose($file);
-    //returnerar arrayen
     return $data;
 }
 
