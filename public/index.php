@@ -13,12 +13,20 @@ require APP_PATH . 'App.php';
 
 $transactionData = getTransactionData();
 
+$totalAmount = 0;
 
 foreach ($transactionData as $amount) {
-    $totalAmount = 0;
-    $totalAmount += $amount[3];
-    echo $totalAmount;
+    //ersätter dollartecken och kommatecken med en tom sträng!
+    $cleanAmount = str_replace(['$', ','], '', $amount[3]);
+    //konverterar strängen till numeriskt värde!
+    $numericAmount = floatval($cleanAmount);
+
+    $totalAmount += $numericAmount;
 }
+
+echo 'Total Amount:' . " " . $totalAmount;
+
+// echo $totalAmount;
 
 // //För all data
 // foreach ($transactionData as $row) {
