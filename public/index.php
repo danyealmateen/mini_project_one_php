@@ -14,6 +14,8 @@ require APP_PATH . 'App.php';
 
 $transactionData = getTransactionData();
 
+
 foreach ($transactionData as $row) {
+    //implode används för att skapa en sträng av array elementen, tar två argument, en avgränsare och arrayen i sig.
     echo implode(', ', $row);
 }
