@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 // Your Code
-function get_transaction_data()
+function getTransactionData()
 {
     //berättar vart filen finns
-    $filepath = './transaction_files/sample_1.csv';
+    $filepath = '../transaction_files/sample_1.csv';
     //öppnar och läser - r = read
     $file = fopen($filepath, 'r');
 
@@ -23,4 +23,4 @@ function get_transaction_data()
 }
 
 
-$transaction_data = fopen('./transaction_files/sample_1.csv', 'r');
+$transactionData = fopen('../transaction_files/sample_1.csv', 'r');

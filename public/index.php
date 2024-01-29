@@ -11,3 +11,7 @@ define('VIEWS_PATH', $root . 'views' . DIRECTORY_SEPARATOR);
 
 /* YOUR CODE (Instructions in README.md) */
 require APP_PATH . 'App.php';
+
+$transactionData = getTransactionData();
+
+echo $transactionData;
