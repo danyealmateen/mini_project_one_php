@@ -9,13 +9,19 @@ define('APP_PATH', $root . 'app' . DIRECTORY_SEPARATOR);
 define('FILES_PATH', $root . 'transaction_files' . DIRECTORY_SEPARATOR);
 define('VIEWS_PATH', $root . 'views' . DIRECTORY_SEPARATOR);
 
-/* YOUR CODE (Instructions in README.md) */
 require APP_PATH . 'App.php';
 
 $transactionData = getTransactionData();
 
 
-foreach ($transactionData as $row) {
-    //implode används för att skapa en sträng av array elementen, tar två argument, en avgränsare och arrayen i sig.
-    echo implode(', ', $row);
+foreach ($transactionData as $amount) {
+    $totalAmount = 0;
+    $totalAmount += $amount[3];
+    echo $totalAmount;
 }
+
+// //För all data
+// foreach ($transactionData as $row) {
+//     //implode används för att skapa en sträng av array elementen, tar två argument, en avgränsare och arrayen i sig.
+//     echo implode(', ', $row) .  '<br>';
+// }
