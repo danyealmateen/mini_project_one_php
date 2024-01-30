@@ -51,6 +51,17 @@
                 echo "<tr>";
 
                 for ($i = 0; $i <= 3; $i++) {
+
+                    if ($i === 0 && isset($transaction[$i])) {
+                        $originalDate = $transaction[$i];
+                        $dateObject = DateTime::createFromFormat("m/d/Y", $originalDate);
+                        if ($dateObject !== false) {
+                            $formattedDate = $dateObject->format("M j, Y");
+                            echo "<td>" . htmlspecialchars($formattedDate) . "</td>";
+                        }
+                    }
+
+
                     if (isset($transaction[$i])) {
                         echo "<td>" . htmlspecialchars($transaction[$i]) . "</td>";
                     }
