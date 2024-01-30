@@ -32,10 +32,16 @@
         .expense-color {
             color: red;
         }
+
+        .body {
+            background-color: black;
+            color: gray;
+        }
+
     </style>
 </head>
 
-<body>
+<body class="body">
     <table>
         <thead>
             <tr>
@@ -85,7 +91,7 @@
 
                         //amount textfrg beroende på om större eller mindre än 0
                         $amountClass = $amount < 0 ? 'expense-color' : 'income-color';
-                        
+
                         echo "<td class='" . htmlspecialchars($amountClass) . "'>" . htmlspecialchars($transaction[$i]) . "</td>";
                     } elseif ($i !== 3 && isset($transaction[$i])) {
                         echo "<td>" . htmlspecialchars($transaction[$i]) . "</td>";
