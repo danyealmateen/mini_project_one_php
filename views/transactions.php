@@ -40,15 +40,19 @@
         <tbody>
             <?php
             $transactions = readTransactions(FILES_PATH . 'sample_1.csv');
+            $firstRow = true;
 
             foreach ($transactions as $transaction) {
+                if ($firstRow) {
+                    $firstRow = false;
+                    continue;
+                }
+
                 echo "<tr>";
 
                 for ($i = 0; $i <= 3; $i++) {
                     if (isset($transaction[$i])) {
                         echo "<td>" . htmlspecialchars($transaction[$i]) . "</td>";
-                    } else {
-                        echo "<td> Data saknas </td>";
                     }
                 }
                 echo "</tr>";
