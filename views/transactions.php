@@ -44,20 +44,7 @@
             foreach ($transactions as $transaction) {
                 echo "<tr>";
 
-                if (!empty($transaction[0])) {
-                    $originalDates = $transaction[0];
-                    $date = DateTime::createFromFormat("m/d/Y", $originalDates);
-                }
-
-                if ($date !== false) {
-                    $formattedDate = $date->format("M j, Y");
-                    echo "<td>" . htmlspecialchars($formattedDate) . "</td>";
-                    // echo "<td>" . htmlspecialchars($transaction[1]) . "</td>";
-                    // echo "<td>" . htmlspecialchars($transaction[2]) . "</td>";
-                    // echo "<td>" . htmlspecialchars($transaction[3]) - "</td>";
-                }
-
-                for ($i = 1; $i <= 3; $i++) {
+                for ($i = 0; $i <= 3; $i++) {
                     if (isset($transaction[$i])) {
                         echo "<td>" . htmlspecialchars($transaction[$i]) . "</td>";
                     } else {
