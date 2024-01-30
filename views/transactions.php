@@ -40,6 +40,7 @@
         <tbody>
             <?php
             $transactions = readTransactions(FILES_PATH . 'sample_1.csv');
+
             foreach ($transactions as $transaction) {
                 echo "<tr>";
 
@@ -51,8 +52,19 @@
                 if ($date !== false) {
                     $formattedDate = $date->format("M j, Y");
                     echo "<td>" . htmlspecialchars($formattedDate) . "</td>";
-                    echo "</tr>";
+                    // echo "<td>" . htmlspecialchars($transaction[1]) . "</td>";
+                    // echo "<td>" . htmlspecialchars($transaction[2]) . "</td>";
+                    // echo "<td>" . htmlspecialchars($transaction[3]) - "</td>";
                 }
+
+                for ($i = 1; $i <= 3; $i++) {
+                    if (isset($transaction[$i])) {
+                        echo "<td>" . htmlspecialchars($transaction[$i]) . "</td>";
+                    } else {
+                        echo "<td> Data saknas </td>";
+                    }
+                }
+                echo "</tr>";
             }
             ?>
         </tbody>
