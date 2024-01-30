@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Transactions</title>
     <style>
@@ -37,7 +38,7 @@
             </tr>
         </thead>
         <tbody>
-            <!-- YOUR CODE -->
+
         </tbody>
         <tfoot>
             <tr>
