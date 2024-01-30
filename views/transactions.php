@@ -24,6 +24,14 @@
         tfoot tr th {
             text-align: right;
         }
+
+        .income-color {
+            color: green;
+        }
+
+        .expense-color {
+            color: red;
+        }
     </style>
 </head>
 
@@ -70,18 +78,16 @@
                 }
                 //formaterad datum till m/d/y
                 for ($i = 0; $i <= 3; $i++) {
-                    //omn index är lika med 0 och indexnumret finns som nyckeln i arrayen...
-                    if ($i === 0 && isset($transaction[$i])) {
-                        $originalDate = $transaction[$i];
-                        $dateObject = DateTime::createFromFormat("m/d/Y", $originalDate);
+                    // amount kolumnen
+                    if ($i === 3 && isset($transaction[$i])) {
+                        $amountString = str_replace([',', '$'], '', $transaction[$i]);
+                        $amount = floatval($amountString);
 
-                        if ($dateObject !== false) {
-                            $formattedDate = $dateObject->format("M j, Y");
-                            echo "<td>" . htmlspecialchars($formattedDate) . "</td>";
-                        } else {
-                            echo "<td> Ogiltigt datum </td>";
-                        }
-                    } elseif ($i !== 0 && isset($transaction[$i])) {
+                        //amount textfrg beroende på om större eller mindre än 0
+                        $amountClass = $amount < 0 ? 'expense-color' : 'income-color';
+                        
+                        echo "<td class='" . htmlspecialchars($amountClass) . "'>" . htmlspecialchars($transaction[$i]) . "</td>";
+                    } elseif ($i !== 3 && isset($transaction[$i])) {
                         echo "<td>" . htmlspecialchars($transaction[$i]) . "</td>";
                     }
                 }
