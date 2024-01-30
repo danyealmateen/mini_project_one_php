@@ -33,11 +33,10 @@
             color: red;
         }
 
-        .body {
+        /* .body {
             background-color: black;
             color: gray;
-        }
-
+        } */
     </style>
 </head>
 
