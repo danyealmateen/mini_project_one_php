@@ -38,7 +38,23 @@
             </tr>
         </thead>
         <tbody>
+            <?php
+            $transactions = readTransactions(FILES_PATH . 'sample_1.csv');
+            foreach ($transactions as $transaction) {
+                echo "<tr>";
 
+                if (!empty($transaction[0])) {
+                    $originalDates = $transaction[0];
+                    $date = DateTime::createFromFormat("m/d/Y", $originalDates);
+                }
+
+                if ($date !== false) {
+                    $formattedDate = $date->format("M j, Y");
+                    echo "<td>" . htmlspecialchars($formattedDate) . "</td>";
+                    echo "</tr>";
+                }
+            }
+            ?>
         </tbody>
         <tfoot>
             <tr>
