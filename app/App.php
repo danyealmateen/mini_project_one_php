@@ -3,5 +3,11 @@
 function readTransactions($path)
 {
     $fileContent = file_get_contents($path);
-    echo $fileContent;
+    $rows = explode("\n", $fileContent);
+    $transactions = [];
+
+    foreach ($rows as $row) {
+        $transactions[] = str_getcsv($row);
+    }
+    return  $transactions;
 }
