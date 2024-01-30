@@ -42,25 +42,34 @@
             $transactions = readTransactions(FILES_PATH . 'sample_1.csv');
             $firstRow = true;
             $totalIncome = 0;
+            $totalExpense = 0;
 
-            //Hoppa över första raden i .csv filen pga dubbla rubriker
+            //Hoppa över första raden i .csv filen pga rubrikerna
             foreach ($transactions as $transaction) {
                 if ($firstRow) {
                     $firstRow = false;
                     continue;
                 }
 
+                //omvandlar transaktionerna till nummer (från sträng) och skapar ett totalbelopp
                 if (isset($transaction[3])) {
                     $amountString = str_replace([',', '$'], '', $transaction[3]);
                     $amount = floatval($amountString);
+
                     if ($amount > 0) {
                         $totalIncome += $amount;
                     }
-                }
-                echo "<tr>";
 
+                    if ($amount < 0) {
+                        $totalExpense -= $amount;
+                    }
+                }
+
+
+
+                //formaterad datum till m/d/y
                 for ($i = 0; $i <= 3; $i++) {
-                    //formaterad datum
+                    //omn index är lika med 0 och indexnumret finns som nyckeln i arrayen...
                     if ($i === 0 && isset($transaction[$i])) {
                         $originalDate = $transaction[$i];
                         $dateObject = DateTime::createFromFormat("m/d/Y", $originalDate);
@@ -75,7 +84,6 @@
                         echo "<td>" . htmlspecialchars($transaction[$i]) . "</td>";
                     }
                 }
-
                 echo "</tr>";
             }
             ?>
@@ -87,7 +95,7 @@
             </tr>
             <tr>
                 <th colspan="3">Total Expense:</th>
-                <td><!-- YOUR CODE --></td>
+                <td><?php echo "-" . htmlspecialchars(number_format($totalExpense, 2)); ?></td>
             </tr>
             <tr>
                 <th colspan="3">Net Total:</th>
