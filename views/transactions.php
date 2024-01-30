@@ -50,23 +50,24 @@
                     $firstRow = false;
                     continue;
                 }
-
                 //omvandlar transaktionerna till nummer (från sträng) och skapar ett totalbelopp
                 if (isset($transaction[3])) {
                     $amountString = str_replace([',', '$'], '', $transaction[3]);
                     $amount = floatval($amountString);
 
+                    //total amount
                     if ($amount > 0) {
                         $totalIncome += $amount;
                     }
-
+                    //total expense
                     if ($amount < 0) {
                         $totalExpense -= $amount;
                     }
+
+                    if ($totalIncome && $totalExpense) {
+                        $netTotal = $totalIncome - $totalExpense;
+                    }
                 }
-
-
-
                 //formaterad datum till m/d/y
                 for ($i = 0; $i <= 3; $i++) {
                     //omn index är lika med 0 och indexnumret finns som nyckeln i arrayen...
@@ -99,7 +100,7 @@
             </tr>
             <tr>
                 <th colspan="3">Net Total:</th>
-                <td><!-- YOUR CODE --></td>
+                <td><?php echo htmlspecialchars(number_format($netTotal, 2)); ?></td>
             </tr>
         </tfoot>
     </table>
