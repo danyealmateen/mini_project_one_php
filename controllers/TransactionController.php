@@ -4,8 +4,7 @@ class TransactionController
 {
     public function list()
     {
-        $transactions = Transaction::readTransactions(FILES_PATH . 'sample_1.csv');
-
+        $transactionData = Transaction::readTransactions();
         require VIEWS_PATH . 'transactions.php';
     }
 }
