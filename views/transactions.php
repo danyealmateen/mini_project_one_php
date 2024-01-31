@@ -32,15 +32,13 @@
         .expense-color {
             color: red;
         }
-
-        /* .body {
-            background-color: black;
-            color: gray;
-        } */
     </style>
 </head>
 
 <body class="body">
+
+
+
     <table>
         <thead>
             <tr>
@@ -51,25 +49,35 @@
             </tr>
         </thead>
         <tbody>
-            <?php
- 
+            <?php foreach ($transactionData['transactions'] as $transaction) : ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($transaction['date']); ?></td>
 
-            //Hoppa över första raden i .csv filen pga rubrikerna
-
-            ?>
+                    <td></td>
+                    
+                    <td></td>
+                </tr>
+            <?php endforeach; ?>
         </tbody>
+
+
+
+
+
+
+
+
+
+
         <tfoot>
             <tr>
                 <th colspan="3">Total Income:</th>
-                <td><?php echo htmlspecialchars(number_format($totalIncome, 2)); ?></td>
             </tr>
             <tr>
                 <th colspan="3">Total Expense:</th>
-                <td><?php echo "-" . htmlspecialchars(number_format($totalExpense, 2)); ?></td>
             </tr>
             <tr>
                 <th colspan="3">Net Total:</th>
-                <td><?php echo htmlspecialchars(number_format($netTotal, 2)); ?></td>
             </tr>
         </tfoot>
     </table>

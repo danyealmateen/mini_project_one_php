@@ -4,12 +4,13 @@ class Transaction
 {
     public static function readTransactions($path)
     {
-        $transactions = readTransactions(FILES_PATH . 'sample_1.csv');
-        $firstRow = true;
+        $transactionsRaw = readTransactions(FILES_PATH . 'sample_1.csv');
+        $transactionsProcessed = [];
         $totalIncome = 0;
         $totalExpense = 0;
 
-        foreach ($transactions as $transaction) {
+        $firstRow = true;
+        foreach ($transactionsRaw as $transaction) {
             if ($firstRow) {
                 $firstRow = false;
                 continue;
@@ -41,12 +42,18 @@ class Transaction
                     //ternary för textfärgen
                     $amountClass = $amount < 0 ? 'expense-color' : 'income-color';
 
-                    echo "<td class='" . htmlspecialchars($amountClass) . "'>" . htmlspecialchars($transaction[$i]) . "</td>";
+                    // echo "<td class='" . htmlspecialchars($amountClass) . "'>" . htmlspecialchars($transaction[$i]) . "</td>";
                 } elseif ($i !== 3 && isset($transaction[$i])) {
-                    echo "<td>" . htmlspecialchars($transaction[$i]) . "</td>";
+                    // echo "<td>" . htmlspecialchars($transaction[$i]) . "</td>";
                 }
             }
-            echo "</tr>";
+            // echo "</tr>";
         }
+        return [
+            'transactions' => $transactionsProcessed,
+            'totalIncome' => $totalIncome,
+            'totalExpense' => $totalExpense,
+            'netTotal' => $totalIncome - $totalExpense
+        ];
     }
 }
