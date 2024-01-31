@@ -57,10 +57,7 @@ class Transaction
                         'amount' => $amount,
                         'amountClass' => $amountClass
                     ];
-
-                    // echo "<td class='" . htmlspecialchars($amountClass) . "'>" . htmlspecialchars($transaction[$i]) . "</td>";
                 } elseif ($i !== 3 && isset($transaction[$i])) {
-                
                 }
             }
         }
